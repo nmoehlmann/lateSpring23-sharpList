@@ -9,10 +9,10 @@ namespace sharpList.Models
   {
     public int Id { get; set; }
     public string name { get; set; }
-    public int levels { get; set; }
-    public int bathrooms { get; set; }
-    public int bedrooms { get; set; }
-    public double price { get; set; }
+    public int? levels { get; set; }
+    public int? bathrooms { get; set; }
+    public int? bedrooms { get; set; }
+    public double? price { get; set; }
     public string description { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }

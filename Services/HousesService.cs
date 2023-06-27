@@ -30,6 +30,32 @@ namespace sharpList.Services
       House newHouse = _repo.CreateHouse(houseData);
       return newHouse;
     }
+    internal string DeleteHouse(int houseId)
+    {
+      House house = GetHouseById(houseId);
 
+      int rows = _repo.DeleteHouse(houseId);
+      return $"House at id:{houseId} has been deleted";
+    }
+
+    internal House UpdateHouse(House updateData)
+    {
+      House original = GetHouseById(updateData.Id);
+
+      original.name = updateData.name != null ? updateData.name : original.name;
+
+      original.levels = updateData.levels != null ? updateData.levels : original.levels;
+
+      original.bathrooms = updateData.bathrooms != null ? updateData.bathrooms : original.bathrooms;
+
+      original.bedrooms = updateData.bedrooms != null ? updateData.bedrooms : original.bedrooms;
+
+      original.price = updateData.price != null ? updateData.price : original.price;
+
+      original.description = updateData.description != null ? updateData.description : original.description;
+
+      _repo.UpdateHouse(original);
+      return original;
+    }
   }
 }

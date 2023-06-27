@@ -39,5 +39,25 @@ namespace sharpList.Repositories
       return newHouse;
     }
 
+    internal int DeleteHouse(int houseId)
+    {
+      string sql = "DELETE FROM houses WHERE id = @houseId LIMIT 1;";
+      int rows = _db.Execute(sql, new { houseId });
+      return rows;
+    }
+
+    internal void UpdateHouse(House updateData)
+    {
+      string sql = @"
+      UPDATE houses SET
+      name = @name,
+      levels = @levels,
+      bathrooms = @bathrooms,
+      bedrooms = @bedrooms,
+      price = @price,
+      description = @description
+      WHERE id = @id;";
+      _db.Execute(sql, updateData);
+    }
   }
 }
