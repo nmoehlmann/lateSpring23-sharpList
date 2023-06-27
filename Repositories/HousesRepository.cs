@@ -14,6 +14,18 @@ namespace sharpList.Repositories
       _db = db;
     }
 
+    internal List<House> GetAllHouses()
+    {
+      string sql = "SELECT * FROM houses ORDER BY createdAt DESC;";
+      List<House> houses = _db.Query<House>(sql).ToList();
+      return houses;
+    }
+    internal House GetHouseById(int houseId)
+    {
+      string sql = "SELECT * FROM houses WHERE id = @houseId;";
+      House house = _db.Query<House>(sql, new { houseId }).FirstOrDefault();
+      return house;
+    }
     internal House CreateHouse(House houseData)
     {
       string sql = @"
@@ -26,5 +38,6 @@ namespace sharpList.Repositories
       House newHouse = _db.Query<House>(sql, houseData).FirstOrDefault();
       return newHouse;
     }
+
   }
 }

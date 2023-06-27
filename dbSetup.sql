@@ -200,15 +200,17 @@ SELECT * FROM cars WHERE id = 100;
 
 CREATE TABLE
     houses(
-        id INT NULL AUTO_INCREMENT,
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        levels INT NOT NULL,
-        bathrooms INT NOT NULL,
-        bedrooms INT NOT NULL,
-        price DOUBLE NOT NULL,
+        levels INT NOT NULL DEFAULT 0,
+        bathrooms INT NOT NULL DEFAULT 0,
+        bedrooms INT NOT NULL DEFAULT 0,
+        price DOUBLE NOT NULL DEFAULT 0,
         description VARCHAR(255) NOT NULL,
-        PRIMARY KEY (id)
-    )
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    ) default charset utf8 COMMENT '';
+
 INSERT INTO
     houses (
         name,

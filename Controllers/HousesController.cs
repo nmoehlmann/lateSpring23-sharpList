@@ -17,6 +17,34 @@ namespace sharpList.Controllers
       _housesService = housesService;
     }
 
+    [HttpGet]
+    public ActionResult<List<House>> GetAllHouses()
+    {
+      try
+      {
+        List<House> houses = _housesService.GetAllHouses();
+        return Ok(houses);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpGet("{houseId}")]
+    public ActionResult<House> GetHouseById(int houseId)
+    {
+      try
+      {
+        House house = _housesService.GetHouseById(houseId);
+        return Ok(house);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpPost]
     public ActionResult<House> CreateHouse([FromBody] House houseData)
     {
